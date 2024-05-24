@@ -67,9 +67,6 @@ while (!Raylib.WindowShouldClose())
 {
     sw.Restart();
 
-    lookfrom.Z -= 0.2f;
-    cam = new Camera(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
-
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.White);
 
@@ -82,8 +79,6 @@ while (!Raylib.WindowShouldClose())
             //o y no Raylib comeca de cima pra baixo. no GLSL comeca de baixo pra cima. entao trocamos aqui.
 
             int y = Math.Abs(ty - renderHeight);
-
-
 
             Vector3 pixel_color = new Vector3(0, 0, 0);
             for (int s = 0; s < samples_per_pixel; ++s)
