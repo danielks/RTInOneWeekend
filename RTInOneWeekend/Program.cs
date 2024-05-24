@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Numerics;
 
 float aspect_ratio = 16.0f / 9.0f;
-int image_width = 1000;
+int image_width = 600;
 //double aspect_ratio = 3.0 / 2.0;
 //int image_width = 400;
 int image_height = Convert.ToInt32((image_width / aspect_ratio));
 //int samples_per_pixel = 100;
-int samples_per_pixel = 20;
+int samples_per_pixel = 100;
 //int max_depth = 50;
 int max_depth = 10;
 
@@ -32,7 +32,7 @@ long totalRays = 0;
 //Image
 
 //World
-var R = Math.Cos(Util.pi / 4);
+var R = MathF.Cos(Util.pi / 4);
 hittable_list world = new hittable_list();
 
 var material_ground = new Lambertian(new Vector3(0.8f, 0.8f, 0.0f));

@@ -65,7 +65,7 @@ namespace RTInOneWeekend
         public static bool near_zero(Vector3 v)
         {
             float s = 1e-8f;
-            return (Math.Abs(v.X) < s) && (Math.Abs(v.Y) < s) && (Math.Abs(v.Z) < s);
+            return (MathF.Abs(v.X) < s) && (MathF.Abs(v.Y) < s) && (MathF.Abs(v.Z) < s);
         }
 
         public static string ToString(Vector3 v)
@@ -88,12 +88,12 @@ namespace RTInOneWeekend
 
         public static Vector3 refract(Vector3 uv, Vector3 n, float etai_over_etat)
         {
-            float cos_theta = Math.Min(Vector3.Dot(-uv, n), 1.0f);
+            float cos_theta = MathF.Min(Vector3.Dot(-uv, n), 1.0f);
 
             Vector3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
 
 
-            Vector3 r_out_parallel = -(MathF.Sqrt(Math.Abs(1.0f - r_out_perp.LengthSquared()))) * n;
+            Vector3 r_out_parallel = -(MathF.Sqrt(MathF.Abs(1.0f - r_out_perp.LengthSquared()))) * n;
             return r_out_perp + r_out_parallel;
         }
 
