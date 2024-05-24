@@ -4,15 +4,14 @@ using System.Diagnostics;
 using System.Numerics;
 
 float aspect_ratio = 16.0f / 9.0f;
-int image_width = 480;
+int image_width = 1000;
 //double aspect_ratio = 3.0 / 2.0;
 //int image_width = 400;
 int image_height = Convert.ToInt32((image_width / aspect_ratio));
 //int samples_per_pixel = 100;
-
-int samples_per_pixel = 1;
+int samples_per_pixel = 20;
 //int max_depth = 50;
-int max_depth = 3;
+int max_depth = 10;
 
 Raylib.InitWindow(image_width, image_height, "RT in One Weekend");
 //Raylib.ToggleFullscreen();
@@ -146,9 +145,9 @@ void write_color(int x, int y, Vector3 pixel_color, int samples_per_pixel)
 
     //Divide the color by the number of  samples and gamma-correct for gamma=2.0.
     float scale = 1.0f / samples_per_pixel;
-    r = (float)Math.Sqrt(scale * r);
-    g = (float)Math.Sqrt(scale * g);
-    b = (float)Math.Sqrt(scale * b);
+    r = MathF.Sqrt(scale * r);
+    g = MathF.Sqrt(scale * g);
+    b = MathF.Sqrt(scale * b);
 
     byte ir = (byte)(255 * Util.clamp(r, 0.0f, 0.999f));
     byte ig = (byte)(255 * Util.clamp(g, 0.0f, 0.999f));

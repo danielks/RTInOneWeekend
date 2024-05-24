@@ -25,7 +25,7 @@ namespace RTInOneWeekend
         public Camera(Vector3 lookfrom, Vector3 lookat, Vector3 vup, float vfov, float aspect_ratio, float aperture, float focus_dist)
         {
             float theta = Util.degrees_to_radians(vfov);
-            float h = (float)Math.Tan(theta / 2);
+            float h = MathF.Tan(theta / 2);
             float viewport_height = 2.0f * h;
             float viewport_width = aspect_ratio * viewport_height;
 

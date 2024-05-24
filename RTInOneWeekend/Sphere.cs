@@ -27,9 +27,9 @@ namespace RTInOneWeekend
             float half_b = Vector3.Dot(oc, r.direction());
             float c = oc.LengthSquared() - radius * radius;
 
-            double discriminant = half_b * half_b - a * c;
+            float discriminant = half_b * half_b - a * c;
             if (discriminant < 0) return false;
-            float sqrtd = (float)Math.Sqrt(discriminant);
+            float sqrtd = MathF.Sqrt(discriminant);
 
             // Find the nearest root that lies in the acceptable range.
             float root = (-half_b - sqrtd) / a;

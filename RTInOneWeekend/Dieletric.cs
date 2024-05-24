@@ -23,8 +23,8 @@ namespace RTInOneWeekend
             float refraction_ratio = rec.front_face ? (1.0f / ir) : ir;
 
             Vector3 unit_direction = Vec3Utils.unit_vector(r_in.direction());
-            float cos_theta = (float)Math.Min(Vector3.Dot(-unit_direction, rec.normal), 1.0);
-            float sin_theta = (float)Math.Sqrt(1.0f - cos_theta * cos_theta);
+            float cos_theta = MathF.Min(Vector3.Dot(-unit_direction, rec.normal), 1.0f);
+            float sin_theta = MathF.Sqrt(1.0f - cos_theta * cos_theta);
 
             bool cannot_refract = refraction_ratio * sin_theta > 1.0;
             Vector3 direction;
@@ -38,12 +38,12 @@ namespace RTInOneWeekend
             return true;
         }
 
-        private double reflectance(double cosine, double ref_idx)
+        private float reflectance(float cosine, float ref_idx)
         {
             // Use Schlick's approximation for reflectance.
-            double r0 = (1 - ref_idx) / (1 + ref_idx);
+            float r0 = (1 - ref_idx) / (1 + ref_idx);
             r0 = r0 * r0;
-            return r0 + (1 - r0) * Math.Pow((1 - cosine), 5);
+            return r0 + (1 - r0) * MathF.Pow((1 - cosine), 5);
         }
     }
 }

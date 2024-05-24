@@ -20,9 +20,8 @@ namespace RTInOneWeekend
         }
 
         public static float random_float()
-        {
-            
-            return (float)random.NextDouble();
+        {            
+            return random.NextSingle();
         }
 
         public static float random_float(float min, float max)

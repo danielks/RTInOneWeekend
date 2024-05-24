@@ -93,7 +93,7 @@ namespace RTInOneWeekend
             Vector3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
 
 
-            Vector3 r_out_parallel = -((float)Math.Sqrt(Math.Abs(1.0f - r_out_perp.LengthSquared()))) * n;
+            Vector3 r_out_parallel = -(MathF.Sqrt(Math.Abs(1.0f - r_out_perp.LengthSquared()))) * n;
             return r_out_perp + r_out_parallel;
         }
 
