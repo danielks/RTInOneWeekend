@@ -21,8 +21,6 @@ int renderHeight = Raylib.GetRenderHeight();
 
 Byte[] buffer = new byte[Raylib.GetRenderWidth() * Raylib.GetRenderHeight() * 4];
 
-
-
 long frameCount = 0;
 
 Stopwatch sw = new Stopwatch();
@@ -70,6 +68,25 @@ while (!Raylib.WindowShouldClose())
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.White);
 
+    render();
+
+    Raylib.EndDrawing();
+
+    sw.Stop();
+    frameTime = sw.Elapsed.TotalMilliseconds;
+
+    if (frameCount % 10 == 0) //a cada 50 frames mostra o ultimo frametime
+    {
+        Raylib.SetWindowTitle(string.Format("{0}ms. FPS: {1}", frameTime, 1000.0f / frameTime));
+    }
+
+    frameCount++;
+}
+
+Raylib.CloseWindow();
+
+void render()
+{
     for (int x = 0; x < renderWidth; x++)
     //Parallel.For(0, renderWidth, new ParallelOptions { MaxDegreeOfParallelism = 6 }, x =>
     {
@@ -95,8 +112,6 @@ while (!Raylib.WindowShouldClose())
     }
     //});
 
-
-
     Image i2 = new Image
     {
         Format = PixelFormat.UncompressedR8G8B8A8,
@@ -104,6 +119,7 @@ while (!Raylib.WindowShouldClose())
         Height = renderHeight,
         Mipmaps = 1
     };
+
     Texture2D t2 = Raylib.LoadTextureFromImage(i2);
 
     unsafe
@@ -114,22 +130,7 @@ while (!Raylib.WindowShouldClose())
             Raylib.DrawTexture(t2, 0, 0, Color.White);
         }
     }
-
-    Raylib.EndDrawing();
-
-    sw.Stop();
-    frameTime = sw.Elapsed.TotalMilliseconds;
-
-    if (frameCount % 10 == 0) //a cada 50 frames mostra o ultimo frametime
-    {
-        Raylib.SetWindowTitle(string.Format("{0}ms. FPS: {1}", frameTime, 1000.0f / frameTime));
-    }
-
-    frameCount++;
 }
-
-Raylib.CloseWindow();
-
 
 
 void write_color(int x, int y, Vector3 pixel_color, int samples_per_pixel)
